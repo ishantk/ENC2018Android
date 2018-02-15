@@ -10,13 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ActivityOne">
+        </activity>
+        <activity android:name=".ActivityTwo" />
+
+
+
+        <activity android:name=".MyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityTwo"></activity>
+
+
+
+        <activity android:name=".YourActivity"></activity>
     </application>
 
 </manifest>
