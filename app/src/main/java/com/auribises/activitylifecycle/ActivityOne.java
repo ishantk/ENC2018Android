@@ -17,12 +17,16 @@ public class ActivityOne extends AppCompatActivity implements View.OnClickListen
 
     // Reference Variables
     TextView txtTitle;
-    EditText eTxtName;
+    EditText eTxtName, eTxtAge;
     Button btnSubmit;
 
     void initViews(){
+
         txtTitle = findViewById(R.id.textViewTitle);
+
         eTxtName = findViewById(R.id.editTextName);
+        eTxtAge = findViewById(R.id.editTextAge);
+
         btnSubmit = findViewById(R.id.buttonSubmit);
 
         btnSubmit.setOnClickListener(this);
@@ -37,7 +41,7 @@ public class ActivityOne extends AppCompatActivity implements View.OnClickListen
         Log.i("ActivityOne","--onCreate--");
     }
 
-    @Override
+   /* @Override
     protected void onStart() {
         super.onStart();
         Log.i("ActivityOne","--onStart--");
@@ -66,7 +70,7 @@ public class ActivityOne extends AppCompatActivity implements View.OnClickListen
         super.onDestroy();
         Log.i("ActivityOne","--onDestroy--");
     }
-
+*/
     @Override
     public void onClick(View view) {
 
@@ -80,11 +84,42 @@ public class ActivityOne extends AppCompatActivity implements View.OnClickListen
 
         getSupportActionBar().setTitle(name);*/
 
-        String num = eTxtName.getText().toString();
+       /* String num = eTxtName.getText().toString();
         int number = Integer.parseInt(num);
 
         int sqNum = number*number;
-        txtTitle.setText("Square of "+number+" is "+sqNum);
+        txtTitle.setText("Square of "+number+" is "+sqNum);*/
+
+
+        // Forward Passing
+        String name = eTxtName.getText().toString();
+        String age = eTxtAge.getText().toString();
+
+        int iAge = Integer.parseInt(age);
+
+        Intent intent = new Intent(ActivityOne.this,ActivityTwo.class);
+
+        //1. Put Data directly Intent
+        //intent.putExtra("keyName",name);
+        //intent.putExtra("keyAge",iAge);
+
+        //2. Put Data in Bundle
+        /*Bundle bundle = new Bundle();
+        bundle.putString("keyName",name);
+        bundle.putInt("keyAge",iAge);
+
+        intent.putExtra("keyBundle",bundle);*/
+
+
+        //2. Put Data in User Defined Object (which must be implementing Serializable)
+        Person person = new Person();
+        person.name = name;
+        person.age = iAge;
+
+        intent.putExtra("keyPerson",person);
+
+        startActivity(intent);
+
 
     }
 
