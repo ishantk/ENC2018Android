@@ -74,6 +74,14 @@ public class ActivityOne extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
 
+        int id = view.getId();
+
+        switch (id){
+            case R.id.button:
+
+                break;
+        }
+
         /*String name = eTxtName.getText().toString();
 
         Date date = new Date();

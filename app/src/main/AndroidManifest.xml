@@ -10,17 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ActivityOne">
-
             <intent-filter>
                 <action android:name="com.auribises.activitylifecycle.activityone" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
         <activity android:name=".ActivityTwo" />
-
-
-
         <activity android:name=".MyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,10 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
-        <activity android:name=".YourActivity"></activity>
+        <activity android:name=".YourActivity" />
+        <activity android:name=".LayoutsActivity"></activity>
     </application>
 
 </manifest>
