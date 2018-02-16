@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ActivityOne">
+
+            <intent-filter>
+                <action android:name="com.auribises.activitylifecycle.activityone" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
         </activity>
         <activity android:name=".ActivityTwo" />
 
