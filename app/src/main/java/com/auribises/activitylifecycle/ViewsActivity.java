@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,7 +24,11 @@ public class ViewsActivity extends AppCompatActivity implements CompoundButton.O
     EditText eTxtName;
     Button btnSubmit;
 
-    ArrayAdapter<String> adapter;
+    RatingBar ratingBar;
+
+    AutoCompleteTextView txtData;
+
+    ArrayAdapter<String> adapter, adapterData;
 
 
     // Initialize the Views
@@ -38,7 +44,13 @@ public class ViewsActivity extends AppCompatActivity implements CompoundButton.O
 
         eTxtName = findViewById(R.id.editTextName);
 
+        txtData = findViewById(R.id.autoComplete);
+
+        ratingBar = findViewById(R.id.ratingBar);
+
         btnSubmit = findViewById(R.id.buttonSubmit);
+
+
 
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item);
         adapter.add("--Select City--"); //0
@@ -48,8 +60,18 @@ public class ViewsActivity extends AppCompatActivity implements CompoundButton.O
         adapter.add("Bengaluru");
         adapter.add("California"); // n-1
 
+        adapterData = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item);
+        adapterData.add("HandBags"); //0
+        adapterData.add("Handkerchiefs");
+        adapterData.add("Wallet");
+        adapterData.add("Walnut");
+        adapterData.add("Belts");
+        adapterData.add("Shoes"); // n-1
+
         // Set the Adapter on Spinner
         spCity.setAdapter(adapter);
+
+        txtData.setAdapter(adapterData);
 
         // Anonymous Class Implementation of Interface
         spCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -78,7 +100,15 @@ public class ViewsActivity extends AppCompatActivity implements CompoundButton.O
             @Override
             public void onClick(View view) {
                 String strName = eTxtName.getText().toString();
+                String item = txtData.getText().toString();
                 Toast.makeText(ViewsActivity.this,"Your Name is "+strName,Toast.LENGTH_LONG).show();
+            }
+        });
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                Toast.makeText(ViewsActivity.this,"You Rated "+v,Toast.LENGTH_LONG).show();
             }
         });
     }

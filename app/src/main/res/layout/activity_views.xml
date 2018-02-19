@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     tools:context="com.auribises.activitylifecycle.ViewsActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -81,6 +86,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <AutoCompleteTextView
+        android:id="@+id/autoComplete"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Anything.." />
+
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
@@ -89,6 +101,13 @@
         android:layout_marginTop="10dp"
         android:inputType="textPersonName"
         android:hint="Enter Your Name" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/buttonSubmit"
@@ -101,3 +120,4 @@
 
 
 </LinearLayout>
+</ScrollView>
