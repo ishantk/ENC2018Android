@@ -18,14 +18,19 @@
         </activity>
         <activity android:name=".ActivityTwo" />
         <activity android:name=".MyActivity">
+
+        </activity>
+        <activity android:name=".YourActivity" />
+        <activity android:name=".LayoutsActivity" />
+        <activity android:name=".ViewsActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".YourActivity" />
-        <activity android:name=".LayoutsActivity"></activity>
     </application>
 
 </manifest>
