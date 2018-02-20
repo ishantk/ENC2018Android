@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.auribises.activitylifecycle">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,19 +19,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActivityTwo" />
-        <activity android:name=".MyActivity">
-
-        </activity>
+        <activity android:name=".MyActivity" />
         <activity android:name=".YourActivity" />
         <activity android:name=".LayoutsActivity" />
-        <activity android:name=".ViewsActivity">
+        <activity android:name=".ViewsActivity" />
+        <activity android:name=".NewsActivity">
 
+        </activity>
+        <activity android:name=".NewsDisplayActivity" />
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 
