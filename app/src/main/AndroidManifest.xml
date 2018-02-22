@@ -3,8 +3,8 @@
     package="com.auribises.activitylifecycle">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -25,7 +25,7 @@
         <activity android:name=".YourActivity" />
         <activity android:name=".LayoutsActivity" />
         <activity android:name=".ViewsActivity" />
-        <activity android:name=".NewsActivity"></activity>
+        <activity android:name=".NewsActivity" />
         <activity android:name=".NewsDisplayActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
@@ -34,7 +34,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyLocationActivity"></activity>
+        <activity android:name=".MyLocationActivity" />
+        <activity android:name=".UsersActivity"></activity>
     </application>
 
 </manifest>
