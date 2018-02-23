@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -11,12 +12,14 @@ import java.util.ArrayList;
 
 public class UsersActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
-    ListView listView;
+    //ListView listView;
+    GridView gridView;
     ArrayList<User> userList;
     UserAdapter userAdapter;
 
     void initViews(){
-        listView = findViewById(R.id.listView);
+        //listView = findViewById(R.id.listView);
+        gridView = findViewById(R.id.listView);
         userList = new ArrayList<>();
 
         User u1 = new User(R.drawable.contact,"John","john@example.com");
@@ -34,8 +37,8 @@ public class UsersActivity extends AppCompatActivity implements AdapterView.OnIt
         userList.add(new User(R.drawable.folder,"Jin","jin@example.com")); // n-1
 
         userAdapter = new UserAdapter(this,R.layout.list_item,userList);
-        listView.setAdapter(userAdapter);
-        listView.setOnItemClickListener(this);
+        gridView.setAdapter(userAdapter);
+        gridView.setOnItemClickListener(this);
     }
 
     @Override

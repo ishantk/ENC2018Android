@@ -35,7 +35,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MyLocationActivity" />
-        <activity android:name=".UsersActivity"></activity>
+        <activity android:name=".UsersActivity" />
+        <activity android:name=".FragmentDemoActivity"></activity>
     </application>
 
 </manifest>

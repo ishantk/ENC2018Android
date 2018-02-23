@@ -1,0 +1,25 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:stretchColumns="*"
+    tools:context="com.auribises.activitylifecycle.UpperFragment">
+
+
+    <TableRow>
+
+        <Button android:text="Button1"/>
+        <Button android:text="Button2"/>
+        <Button android:text="Button3"/>
+
+    </TableRow>
+
+    <TableRow>
+
+        <Button android:text="Button4"/>
+        <Button android:text="Button5"/>
+
+    </TableRow>
+
+</TableLayout>
