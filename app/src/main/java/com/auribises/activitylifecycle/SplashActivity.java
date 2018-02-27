@@ -1,5 +1,6 @@
 package com.auribises.activitylifecycle;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
@@ -23,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             if(msg.what == 101){
-                Intent intent = new Intent(SplashActivity.this,FragmentDemoActivity.class);
+                Intent intent = new Intent(SplashActivity.this,AddCustomerActivity.class);
                 startActivity(intent);
                 finish();
             }
