@@ -1,6 +1,8 @@
 package com.auribises.activitylifecycle;
 
 import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class AddCustomerActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener{
 
@@ -76,11 +79,64 @@ public class AddCustomerActivity extends AppCompatActivity implements View.OnCli
         initViews();
     }
 
+    void clearFields(){
+        eTxtName.setText("");
+        eTxtPhone.setText("");
+        spCity.setSelection(0);
+        // radio buttons
+    }
+
+    boolean validateFields(){
+        boolean flag = true;
+
+        if(customer.name.isEmpty()){
+            flag = false;
+        }
+
+        if(customer.phone.isEmpty()){
+            flag = false;
+        }else{
+            if(customer.phone.length()!=10){
+                flag = false;
+            }
+        }
+
+        if(customer.city.isEmpty()){
+            flag = false;
+        }
+
+        if(customer.gender.isEmpty()){
+            flag = false;
+        }
+
+        return flag;
+    }
+
+    void insertCustomer(){
+
+        ContentValues values = new ContentValues();
+        values.put(Util.COL_NAME,customer.name);
+        values.put(Util.COL_PHONE,customer.phone);
+        values.put(Util.COL_CITY,customer.city);
+        values.put(Util.COL_GENDER,customer.gender);
+
+        Uri uri = resolver.insert(Util.URI_CUSTOMER,values);
+        Toast.makeText(this,customer.name+" added successfully at "+uri.getLastPathSegment(),Toast.LENGTH_LONG).show();
+
+        clearFields();
+    }
+
     @Override
     public void onClick(View view) {
 
         customer.name = eTxtName.getText().toString();
         customer.phone = eTxtPhone.getText().toString();
+
+        if(validateFields()) {
+            insertCustomer();
+        }else {
+            Toast.makeText(this,"Please Enter Correct Details",Toast.LENGTH_LONG).show();
+        }
 
     }
 

@@ -1,5 +1,7 @@
 package com.auribises.activitylifecycle;
 
+import android.net.Uri;
+
 /**
  * Created by ishantkumar on 27/02/18.
  */
@@ -21,11 +23,13 @@ public class Util {
 
     // Create Table Query
     public static final String CREATE_TAB_QUERY = "create table Customer(" +
-            "_ID int primary key autoincrement," +
+            "_ID integer primary key autoincrement," +
             "name varchar(256)," +
             "phone varchar(16)," +
             "city varchar(256)," +
             "gender varchar(10)" +
             ")";
+
+    public static final Uri URI_CUSTOMER = Uri.parse("content://com.auribises.activitylifecycle.customersprovider/"+TAB_NAME);
 
 }

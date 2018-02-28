@@ -32,13 +32,21 @@ public class CustomersProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        // TODO: Implement this to handle requests to insert a new row.
-        throw new UnsupportedOperationException("Not yet implemented");
+
+        String tabName = uri.getLastPathSegment();
+        long rowId = sqLiteDatabase.insert(tabName,null,values);
+
+        Uri dummyUri = Uri.parse("anything/"+rowId);
+
+        return dummyUri;
     }
 
     @Override
     public boolean onCreate() {
-        // TODO: Implement this to initialize your content provider on startup.
+
+        dbHelper = new DBHelper(getContext(),Util.DB_NAME,null,Util.DB_VERSION);
+        sqLiteDatabase = dbHelper.getWritableDatabase();
+
         return false;
     }
 
@@ -58,13 +66,16 @@ public class CustomersProvider extends ContentProvider {
 
     class DBHelper extends SQLiteOpenHelper{
 
+        // Constructor shall create DB
         public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
             super(context, name, factory, version);
         }
 
+        // onCreate shall create the Table(s)
         @Override
         public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+            sqLiteDatabase.execSQL(Util.CREATE_TAB_QUERY);
+            //sqLiteDatabase.execSQL(Util.CREATE_TAB_QUERY1);
         }
 
         @Override
