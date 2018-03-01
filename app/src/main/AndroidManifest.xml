@@ -59,7 +59,9 @@
             android:name=".CustomersProvider"
             android:authorities="com.auribises.activitylifecycle.customersprovider"
             android:enabled="true"
-            android:exported="true"></provider>
+            android:exported="true" />
+
+        <activity android:name=".AllCustomersActivity"></activity>
     </application>
 
 </manifest>
