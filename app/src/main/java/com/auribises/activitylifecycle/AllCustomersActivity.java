@@ -1,16 +1,21 @@
 package com.auribises.activitylifecycle;
 
 import android.content.ContentResolver;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class AllCustomersActivity extends AppCompatActivity {
+public class AllCustomersActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     ListView listView;
     ContentResolver resolver;
@@ -19,6 +24,8 @@ public class AllCustomersActivity extends AppCompatActivity {
     CustomerAdapter customerAdapter;
 
     ArrayList<Customer> customerList;
+
+    Customer customer;
 
     void initViews(){
         listView = findViewById(R.id.listView);
@@ -54,7 +61,8 @@ public class AllCustomersActivity extends AppCompatActivity {
         customerAdapter = new CustomerAdapter(this,R.layout.customer_list_item,customerList);
 
         listView.setAdapter(customerAdapter);
-        getSupportActionBar().setTitle("All Customers | "+adapter.getCount());
+        listView.setOnItemClickListener(this);
+        getSupportActionBar().setTitle("All Customers | "+customerList.size());
 
     }
 
@@ -66,5 +74,46 @@ public class AllCustomersActivity extends AppCompatActivity {
 
 
         initViews();
+    }
+
+    void showOptions(){
+
+        String[] items = {"View","Delete","Update"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                switch (i){
+                    case 0:
+                        Intent intent = new Intent();
+                        intent.putExtra("keyCustomer",customer);
+                        startActivity(intent);
+                        break;
+
+                    case 1:
+
+                        break;
+
+                    case 2:
+
+                        break;
+                }
+
+            }
+        });
+
+        builder.create().show();
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        customer = customerList.get(i);
+
+        showOptions();
+
     }
 }

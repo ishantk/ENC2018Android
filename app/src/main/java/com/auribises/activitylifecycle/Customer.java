@@ -1,10 +1,12 @@
 package com.auribises.activitylifecycle;
 
+import java.io.Serializable;
+
 /**
  * Created by ishantkumar on 27/02/18.
  */
 
-public class Customer {
+public class Customer implements Serializable{
 
     public int id;
     public String name;
