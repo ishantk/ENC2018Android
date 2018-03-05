@@ -33,6 +33,8 @@ public class AddCustomerActivity extends AppCompatActivity implements View.OnCli
 
     ContentResolver resolver;
 
+    boolean updateMode;
+
     void initViews(){
 
         customer = new Customer();
@@ -55,7 +57,9 @@ public class AddCustomerActivity extends AppCompatActivity implements View.OnCli
         spCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                customer.city = adapter.getItem(i);
+
+                if(i!=0)
+                    customer.city = adapter.getItem(i);
             }
 
             @Override
@@ -73,6 +77,36 @@ public class AddCustomerActivity extends AppCompatActivity implements View.OnCli
 
         btnAdd = findViewById(R.id.buttonAdd);
         btnAdd.setOnClickListener(this);
+
+        Intent rcv = getIntent();
+        updateMode = rcv.hasExtra("keyCustomer");
+
+        if(updateMode){
+            customer = (Customer)rcv.getSerializableExtra("keyCustomer");
+
+            eTxtName.setText(customer.name);
+            eTxtPhone.setText(customer.phone);
+
+            btnAdd.setText("Update");
+
+            int sel = 0;
+
+            for(int i=0;i<adapter.getCount();i++){
+                if(customer.city.equals(adapter.getItem(i))){
+                    sel = i;
+                    break;
+                }
+            }
+
+            spCity.setSelection(sel);
+
+            if(customer.gender.equals("Male")){
+                rbMale.setChecked(true);
+            }else{
+                rbFemale.setChecked(true);
+            }
+        }
+
     }
 
     @Override
@@ -123,10 +157,26 @@ public class AddCustomerActivity extends AppCompatActivity implements View.OnCli
         values.put(Util.COL_CITY,customer.city);
         values.put(Util.COL_GENDER,customer.gender);
 
-        Uri uri = resolver.insert(Util.URI_CUSTOMER,values);
-        Toast.makeText(this,customer.name+" added successfully at "+uri.getLastPathSegment(),Toast.LENGTH_LONG).show();
+        String where = Util.COL_ID+ " = "+customer.id;
 
-        clearFields();
+        if(updateMode){
+
+            int i = resolver.update(Util.URI_CUSTOMER,values,where,null);
+            if(i>0) {
+                Toast.makeText(this, customer.name + " updated successfully", Toast.LENGTH_LONG).show();
+                finish();
+            }
+
+
+        }else {
+
+            Uri uri = resolver.insert(Util.URI_CUSTOMER, values);
+            Toast.makeText(this, customer.name + " added successfully at " + uri.getLastPathSegment(), Toast.LENGTH_LONG).show();
+            clearFields();
+
+        }
+
+
     }
 
     @Override

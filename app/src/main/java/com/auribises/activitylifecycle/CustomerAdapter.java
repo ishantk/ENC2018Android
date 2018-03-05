@@ -37,6 +37,11 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
 
         View view = LayoutInflater.from(context).inflate(resource,parent,false);
 
+
+//        LayoutInflater lRef = LayoutInflater.from(context);
+//        View v = lRef.inflate(resource,parent,false);
+
+
         TextView txtName = view.findViewById(R.id.textViewName);
         TextView txtPhone = view.findViewById(R.id.textViewPhone);
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,8 @@ public class AllCustomersActivity extends AppCompatActivity implements AdapterVi
     CustomerAdapter customerAdapter;
 
     ArrayList<Customer> customerList;
+
+    int pos;
 
     Customer customer;
 
@@ -76,6 +79,38 @@ public class AllCustomersActivity extends AppCompatActivity implements AdapterVi
         initViews();
     }
 
+    void deleteCustomer(){
+
+        String where = Util.COL_ID+" = "+customer.id;
+        int i = resolver.delete(Util.URI_CUSTOMER,where,null);
+
+        if(i>0){
+
+            customerList.remove(pos);
+            customerAdapter.notifyDataSetChanged(); // Refresh the ListView
+
+            getSupportActionBar().setTitle("All Customers | "+customerList.size());
+
+            Toast.makeText(this,customer.name+" deleted !!",Toast.LENGTH_LONG).show();
+
+        }
+
+    }
+
+    void askForDeletion(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete "+customer.name);
+        builder.setMessage("Are you sure to delete ?");
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                deleteCustomer();
+            }
+        });
+        builder.setNegativeButton("Cancel",null);
+        builder.create().show();
+    }
+
     void showOptions(){
 
         String[] items = {"View","Delete","Update"};
@@ -93,11 +128,13 @@ public class AllCustomersActivity extends AppCompatActivity implements AdapterVi
                         break;
 
                     case 1:
-
+                        askForDeletion();
                         break;
 
                     case 2:
-
+                        Intent intent1 = new Intent(AllCustomersActivity.this,AddCustomerActivity.class);
+                        intent1.putExtra("keyCustomer",customer); // Forward Passing
+                        startActivity(intent1);
                         break;
                 }
 
@@ -112,6 +149,7 @@ public class AllCustomersActivity extends AppCompatActivity implements AdapterVi
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
         customer = customerList.get(i);
+        pos = i;
 
         showOptions();
 
