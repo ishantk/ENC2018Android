@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
     <application
         android:allowBackup="true"
@@ -16,7 +17,6 @@
         <activity android:name=".ActivityOne">
             <intent-filter>
                 <action android:name="com.auribises.activitylifecycle.activityone" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -62,7 +62,8 @@
             android:exported="true" />
 
         <activity android:name=".AllCustomersActivity" />
-        <activity android:name=".ShakeDetectorActivity"></activity>
+        <activity android:name=".ShakeDetectorActivity" />
+        <activity android:name=".VoiceDemoActivity"></activity>
     </application>
 
 </manifest>

@@ -53,7 +53,7 @@ public class ShakeDetectorActivity extends AppCompatActivity implements
 
         if(cal>3){
             txtShake.setText("Shake Detected: "+cal);
-            sensorManager.registerListener(this,sensor,SensorManager.SENSOR_DELAY_NORMAL);
+            sensorManager.unregisterListener(this);
         }else{
             txtShake.setText(x+" : "+y+" :"+z);
         }
@@ -76,6 +76,6 @@ public class ShakeDetectorActivity extends AppCompatActivity implements
     protected void onDestroy() {
         super.onDestroy();
 
-        sensorManager.unregisterListener(this);
+        //sensorManager.unregisterListener(this);
     }
 }
