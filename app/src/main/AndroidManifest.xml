@@ -61,7 +61,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".AllCustomersActivity"></activity>
+        <activity android:name=".AllCustomersActivity" />
+        <activity android:name=".ShakeDetectorActivity"></activity>
     </application>
 
 </manifest>
