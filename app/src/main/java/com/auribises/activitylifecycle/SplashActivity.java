@@ -24,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             if(msg.what == 101){
-                Intent intent = new Intent(SplashActivity.this,ShakeDetectorActivity.class);
+                Intent intent = new Intent(SplashActivity.this,MyMapsActivity.class);
                 startActivity(intent);
                 finish();
             }

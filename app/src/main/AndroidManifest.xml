@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +17,7 @@
         <activity android:name=".ActivityOne">
             <intent-filter>
                 <action android:name="com.auribises.activitylifecycle.activityone" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -63,7 +64,22 @@
 
         <activity android:name=".AllCustomersActivity" />
         <activity android:name=".ShakeDetectorActivity" />
-        <activity android:name=".VoiceDemoActivity"></activity>
+        <activity android:name=".VoiceDemoActivity" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".MyMapsActivity"
+            android:label="@string/title_activity_my_maps"></activity>
     </application>
 
 </manifest>
