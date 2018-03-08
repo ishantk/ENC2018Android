@@ -79,7 +79,8 @@
 
         <activity
             android:name=".MyMapsActivity"
-            android:label="@string/title_activity_my_maps"></activity>
+            android:label="@string/title_activity_my_maps" />
+        <activity android:name=".BookFetcherActivity"></activity>
     </application>
 
 </manifest>

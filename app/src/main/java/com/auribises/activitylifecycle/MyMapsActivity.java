@@ -125,8 +125,6 @@ public class MyMapsActivity extends FragmentActivity implements OnMapReadyCallba
         mMap.addMarker(new MarkerOptions().position(ludhiana).title(builder.toString()));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ludhiana));
 
-
-
         locationManager.removeUpdates(this);
 
     }
