@@ -5,6 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -33,10 +40,63 @@ public class BookFetcherActivity extends AppCompatActivity {
 
         bookList = new ArrayList<>();
 
-        new BookFetchTask().execute();
+        //new BookFetchTask().execute();
         //new BookFetchThread().start();
 
+        fetchBooks();
+
     }
+
+    void fetchBooks(){
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                "http://www.json-generator.com/api/json/get/chQLxhBjaW?indent=2",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        txtResponse.setText(response);
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = jsonObject.getJSONArray("bookstore");
+
+
+                            String p="",n="",a="";
+                            for(int i=0;i<jsonArray.length();i++){
+
+                                JSONObject jObj = jsonArray.getJSONObject(i);
+                                p = jObj.getString("price");
+                                n = jObj.getString("name");
+                                a = jObj.getString("author");
+
+                                Book book = new Book(p,n,a);
+                                bookList.add(book);
+                            }
+
+
+                            // Further Pass the bookList in a custom adapter and show the same
+
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+
+        requestQueue.add(stringRequest); // Sending the Request
+
+    }
+
 
 
     /*private class BookFetchThread extends Thread{
